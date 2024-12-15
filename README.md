@@ -1,6 +1,5 @@
-The data is stored on Research Computing’s System at the following path: `/projects/aija9929/Final_Project_ATOC4500_F24`. You should have read, write, and execute privileges to the folder, and most of the contents (let me know if this doesn’t work). 
-
-**I grabbed the data from the S2S Database from ECMWF for just January 2024 (as of now) for both total precipitation and 2-meter surface temperature.** At the end of this there are instructions on how to grab new data if you need to, or let me know, and I can grab it!
+# Data and Code Availability
+All of the code used to produce figures and results is available in this public repository. We used data from the [Subseasonal-to-Seasonal (S2S) Dataset](https://apps.ecmwf.int/datasets/data/s2s/levtype=sfc/type=cf/) and the [ECMWF Reanalysis v5 (ERA5) Dataset](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5). The S2S data is publicly available and the ERA5 data was retrieved from [NCAR's Research Data Archive](https://rda.ucar.edu/datasets/d633000/). All of the specifications of the data we used can be found within the code in this repository (contact me if you would like a specific list of dates and parameters). Additionally, our specific datasets are stored on CU Research Computing's System in the following directory: `/projects/aija9929/Final_Project_ATOC4500_F24`.
 
 # Contents
 
