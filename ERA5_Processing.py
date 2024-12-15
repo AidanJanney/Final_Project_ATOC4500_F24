@@ -13,7 +13,7 @@ from dateutil.relativedelta import relativedelta
 #####################
 ## DATA PROCESSING ##
 #####################
-'''
+
 ## Precipitation Data ##
 start_date = datetime(2023, 12, 1, 6) #2023-12-01T:06:00:00
 end_date = datetime(2024, 8, 1, 6) #2024-08-01T06:00:00
@@ -65,12 +65,19 @@ for i in range(len(date_series)-1):
 total_precip = xr.concat(all_data_precip, dim = 'forecast_initial_time')
 total_precip_USA = total_precip.sel(longitude = slice(360-135, 360-55), latitude = slice(60,15))
 
+## Cleaning up the data before converting to netcdf
+total_precip = total_precip.to_dataset(name='tp')
+total_precip = total_precip.sortby('forecast_initial_time')
+total_precip_USA = total_precip_USA.to_dataset(name = 'tp')
+total_precip_USA = total_precip_USA.sortby('forecast_initial_time')
+
+## Saving to netcdf
 start_date = date_series[0] #2023-12-01T:06:00:00
 end_date = date_series[-1] #2024-08-01T06:00:00
 
 total_precip.to_netcdf(f'./Final_Data/ERA5_Total_Precipitation_{start_date}_{end_date}.nc')         
 total_precip_USA.to_netcdf(f'./Final_Data/ERA5_Total_Precipitation_USA_{start_date}_{end_date}.nc')
-'''
+
 ####################################################################################################
 ####################################################################################################
 ## Temp Data ##
@@ -102,6 +109,13 @@ for i in range(0, len(date_series)-1, 2):
 total_2t_temp = xr.concat(all_data_temp, dim = 'time')
 total_2t_temp_USA = total_2t_temp.sel(longitude = slice(360-135, 360-55), latitude = slice(60,15))
 
+## Cleaning up the data before converting
+total_2t_temp = total_2t_temp.to_dataset(name = 't2m')
+total_2t_temp = total_2t_temp.sortby('time')
+total_2t_temp_USA = total_2t_temp_USA.to_dataset(name = 't2m')
+total_2t_temp_USA = total_2t_temp_USA.sortby('time')
+
+## Converting to netcdf
 start_date = date_series[0] #2024-01-01T:00:00:00
 end_date = date_series[-1] #2024-08-31T23:00:00
 
